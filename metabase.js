@@ -64,7 +64,8 @@ function checkColAttribute(row, today, preRowinfo){
                 row.setAttribute('row-status','putoff');
             } else if(text === '完了'
                    || text === 'テスト完了'
-                   || text === '評価完了'){
+                   || text === '評価完了'
+                   || text === '済'){
                 row.setAttribute('row-status','complete');
             } else if(text === '新規'
                    || text === '着手'

@@ -24,7 +24,7 @@ var intervalId = setInterval(findElementForWait , 1000);
 
 function findElementForWait(){
     retryCount++;
-    if(retryCount > 10){
+    if(retryCount > 60){
        clearInterval(intervalId);
     }
     var td = document.querySelector('table.CtorL td');
@@ -33,6 +33,7 @@ function findElementForWait(){
        addRowAttribute();
        bindPagingEvent();
     }
+    console.log('wait loading...')
 }
 
 function toStr(date){
@@ -132,7 +133,7 @@ function bindPagingEvent(){
     }
     function callFunctionKeyup(event){
         if(event && event.key === 'Enter'){
-            setTimeout(addRowAttribute, 500);
+            intervalId = setInterval(findElementForWait , 1000);
         }
     }
 }

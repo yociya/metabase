@@ -20,16 +20,16 @@ pinss.insertRule('span[col-style="before"] { color:blue; }', pinss.cssRules.leng
 
 
 var retryCount = 0;
-var intervalId = setInterval(findElementForWait , 1000);
+findElemIntervalId = setInterval(findElementForWait , 1000);
 
 function findElementForWait(){
     retryCount++;
     if(retryCount > 60){
-       clearInterval(intervalId);
+       clearInterval(findElemIntervalId);
     }
     var td = document.querySelector('table.CtorL td');
     if(td){
-       clearInterval(intervalId);
+       clearInterval(findElemIntervalId);
        addRowAttribute();
        bindPagingEvent();
     }
@@ -133,7 +133,7 @@ function bindPagingEvent(){
     }
     function callFunctionKeyup(event){
         if(event && event.key === 'Enter'){
-            intervalId = setInterval(findElementForWait , 1000);
+            findElemIntervalId = setInterval(findElementForWait , 1000);
         }
     }
 }

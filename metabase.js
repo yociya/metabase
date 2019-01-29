@@ -118,10 +118,21 @@ function bindPagingEvent(){
     var pagings = document.querySelectorAll('div.p1.flex.flex-no-shrink.flex-align-right');
     pagings.forEach(
         function(paging){
-            paging.addEventListener('click' , callFunction);
+            paging.addEventListener('click' , callFunctionClick);
         }
     )
-    function callFunction(){
+    var inputs = document.querySelectorAll('input[placeholder="Tanto"], input[placeholder="Version"]');
+    inputs.forEach(
+        function(input){
+            input.addEventListener('keyup' , callFunctionKeyup);
+        }
+    )
+    function callFunctionClick(){
         setTimeout(addRowAttribute, 500);
+    }
+    function callFunctionKeyup(event){
+        if(event && event.key === 'Enter'){
+            setTimeout(addRowAttribute, 500);
+        }
     }
 }

@@ -59,14 +59,19 @@ function checkColAttribute(row, today, preRowinfo){
     cols.forEach(
         function(col){
             var text = col.textContent;
-            if(text === '破棄'){
+            if(text === '破棄'
+              || text === 'Destructed'){
                 row.setAttribute('row-status','destructed');
-            } else if(text === '先送り'){
+            } else if(text === '先送り'
+                     || text === 'PutOff'){
                 row.setAttribute('row-status','putoff');
             } else if(text === '完了'
                    || text === 'テスト完了'
                    || text === '評価完了'
-                   || text === '済'){
+                   || text === '済'
+                   || text === 'Closed'
+                   || text === 'Tested'
+                   || text === 'Evaluated'){
                 row.setAttribute('row-status','complete');
             } else if(text === '新規'
                    || text === '着手'
@@ -74,7 +79,14 @@ function checkColAttribute(row, today, preRowinfo){
                    || text === '開発中'
                    || text === '開発完了'
                    || text === '開発確認済み'
-                   || text === '評価中'){
+                   || text === '評価中'
+                   || text === 'New'
+                   || text === 'In progress'
+                   || text === 'Resolved'
+                   || text === 'Developing'
+                   || text === 'Developed'
+                   || text === 'Develop Confirmed'
+                   || text === 'Evaluating'){
                 row.setAttribute('row-status','open');
             }
             var date = text.match(/[0-9][0-9][0-9][0-9][\/][0-9][0-9][\/][0-9][0-9]/);

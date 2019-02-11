@@ -16,7 +16,8 @@ pinss.insertRule('tr[row-status="open"][row-style="today"] { color:blue; }', pin
 //retrospective
 pinss.insertRule('span[col-style="over"] { color:red; }', pinss.cssRules.length);
 pinss.insertRule('span[col-style="before"] { color:blue; }', pinss.cssRules.length);
-
+pinss.insertRule('span[col-diff="over"] { color:red; }', pinss.cssRules.length);
+pinss.insertRule('span[col-diff="before"] { color:blue; }', pinss.cssRules.length);
 
 
 var retryCount = 0;
@@ -50,7 +51,7 @@ function toStr(date){
     return information.yyyy + '/' + information.mm + '/' + information.dd;
 }
 
-function checkColAttribute(row, today, preRowinfo){
+function checkColAttribute(row, today, preRowinfo, headerinfo){
     var cols = row.querySelectorAll('span');
     var rowinfo = {};
     rowinfo['count'] = cols.length;
@@ -107,6 +108,13 @@ function checkColAttribute(row, today, preRowinfo){
                     }
                 }
             }
+            if(headerinfo['colname'][colIdx] === 'diff'){
+                if(text.indexOf('-') >= 0){
+                    col.setAttribute('col-diff','before');
+                } else if(text !== '0'){
+                    col.setAttribute('col-diff','over');
+                }
+            }
             rowinfo[colIdx] = text;
             colIdx++;
         }
@@ -118,11 +126,27 @@ function checkColAttribute(row, today, preRowinfo){
 function addRowAttribute(){
     console.log('addRowAttribute');
     var today = toStr(new Date());
-    var rows = document.querySelectorAll('tr');
+    var tables = document.querySelectorAll('table');
     var rowinfo = {};
-    rows.forEach(
-        function(row){
-            rowinfo = checkColAttribute(row,today,rowinfo);
+    tables.forEach(
+        function(table){
+            var headers = table.querySelectorAll('thead > tr > th > div > div');
+            var headerinfo = {};
+            headerinfo['colname'] = {};
+            let index = 0;
+            headers.forEach(
+                function(header){
+                    headerinfo['colname'][index] = header.textContent;
+                    index++;
+                    console.log(header.textContent);
+                }
+            )
+            var rows = table.querySelectorAll('tbody > tr');
+            rows.forEach(
+                function(row){
+                    rowinfo = checkColAttribute(row,today,rowinfo,headerinfo);
+                }
+            )
         }
     )
 }

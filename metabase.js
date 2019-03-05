@@ -4,7 +4,7 @@ document.getElementsByTagName('head').item(0).appendChild(pins);
 var pinss = pins.sheet;
 
 pinss.insertRule('tr:hover { background-color:mediumblue; opacity:0.8; color:white; }', pinss.cssRules.length);
-pinss.insertRule('tr:hover>span { background-color:mediumblue; opacity:0.8; color:white; }', pinss.cssRules.length);
+pinss.insertRule('tr:hover>td>span { background-color:mediumblue; opacity:0.8; color:white; }', pinss.cssRules.length);
 
 //status
 pinss.insertRule('tr[row-status="destructed"] { background-color:silver; opacity:0.6; }', pinss.cssRules.length);

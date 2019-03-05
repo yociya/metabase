@@ -90,12 +90,16 @@ function checkColAttribute(row, today, preRowinfo, headerinfo){
                    || text === 'Evaluating'){
                 row.setAttribute('row-status','open');
             }
-            var date = text.match(/[0-9][0-9][0-9][0-9][\/][0-9][0-9][\/][0-9][0-9]/);
+            var date = text.match(/[0-9]{2,4}[\/][0-9][0-9][\/][0-9][0-9]/);
             if(date){
-                if(text === today){
+                var todaystr = today;
+                if(text.length === 8){
+                    todaystr = todaystr.substr(2);
+                }
+                if(text === todaystr){
                     row.setAttribute('row-style','today');
                 }
-                if(text < today){
+                if(text < todaystr){
                     row.setAttribute('row-style','over');
                 }
                 if(rowinfo[0] === ''

@@ -10,8 +10,8 @@ pinss.insertRule('tr[row-status="destructed"] { background-color:silver; opacity
 pinss.insertRule('tr[row-status="putoff"] { background-color:lightgrey; opacity:0.6; }', pinss.cssRules.length);
 
 //due_date
-pinss.insertRule('tr[row-status="open"][row-style="over"] { color:red; }', pinss.cssRules.length);
-pinss.insertRule('tr[row-status="open"][row-style="today"] { color:blue; }', pinss.cssRules.length);
+pinss.insertRule('tr[row-status="open"][row-style="over"] td { color:red; }', pinss.cssRules.length);
+pinss.insertRule('tr[row-status="open"][row-style="today"] td { color:blue; }', pinss.cssRules.length);
 
 //retrospective
 pinss.insertRule('span[col-style="over"] { color:red; }', pinss.cssRules.length);

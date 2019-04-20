@@ -24,19 +24,21 @@ if(checkTitle('Alert')){
 }
 
 var retryCount = 0;
-findElemIntervalId = setInterval(findElementForWait , 1000);
+var findElemIntervalId = setInterval(findElementForWait , 1000);
 
 function checkTitle(title){
+    var result = false;
     var header = document.querySelector('div.EmbedFrame-header');
     if(header){
         header.querySelectorAll('div').forEach(
             function(div){
                 if(div.textContent.indexOf(title) > 0){
-                    console.log('atta');
+                    result = true;
                 }
             }
         );
     }
+    return result;
 }
 
 function findElementForWait(){
@@ -170,9 +172,11 @@ function addRowAttribute(){
         }
     )
     var tanto = document.querySelector('input[placeholder="Tanto"]');
+    var dashbord = document.querySelector('div.DashboardGrid');
     if(tanto.value !== 'ALL'){
-        var dashbord = document.querySelector('div.DashboardGrid');
         dashbord.classList.add('tanto');
+    } else {
+        dashbord.classList.remove('tanto');
     }
 }
 

@@ -187,7 +187,7 @@ function bindPagingEvent(){
             paging.addEventListener('click' , callFunctionClick);
         }
     )
-    var inputs = document.querySelectorAll('input[placeholder="Tanto"], input[placeholder="Version"]');
+    var inputs = document.querySelectorAll('input[placeholder=Tanto], input[placeholder=Version], input[placeholder=MyTaskOnly]');
     inputs.forEach(
         function(input){
             input.addEventListener('keyup' , callFunctionKeyup);

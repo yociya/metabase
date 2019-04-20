@@ -44,13 +44,15 @@ function checkTitle(title){
 function findElementForWait(){
     retryCount++;
     if(retryCount > 60){
-       clearInterval(findElemIntervalId);
+        clearInterval(findElemIntervalId);
+        findElemIntervalId = -1;
     }
     var td = document.querySelector('table.CtorL td');
     if(td){
-       clearInterval(findElemIntervalId);
-       addRowAttribute();
-       bindPagingEvent();
+        clearInterval(findElemIntervalId);
+        findElemIntervalId = -1;
+        addRowAttribute();
+        bindPagingEvent();
     }
     console.log('wait loading...')
 }
@@ -198,7 +200,9 @@ function bindPagingEvent(){
     }
     function callFunctionKeyup(event){
         if(event && event.key === 'Enter'){
-            findElemIntervalId = setInterval(findElementForWait , 1000);
+            if(findElemIntervalId < 0){
+                findElemIntervalId = setInterval(findElementForWait , 1000);
+            }
         }
     }
 }

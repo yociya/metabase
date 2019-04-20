@@ -19,9 +19,25 @@ pinss.insertRule('span[col-style="before"] { color:blue; }', pinss.cssRules.leng
 pinss.insertRule('span[col-diff="over"] { color:red; }', pinss.cssRules.length);
 pinss.insertRule('span[col-diff="before"] { color:blue; }', pinss.cssRules.length);
 
+if(checkTitle('Alert')){
+    pinss.insertRule('div.DashboardGrid.tanto>div.DashCard { height:500px !important; top:0 !important; position:relative !important; }', pinss.cssRules.length);
+}
 
 var retryCount = 0;
 findElemIntervalId = setInterval(findElementForWait , 1000);
+
+function checkTitle(title){
+    var header = document.querySelector('div.EmbedFrame-header');
+    if(header){
+        header.querySelectorAll('div').forEach(
+            function(div){
+                if(div.textContent.indexOf(title) > 0){
+                    console.log('atta');
+                }
+            }
+        );
+    }
+}
 
 function findElementForWait(){
     retryCount++;
@@ -153,6 +169,11 @@ function addRowAttribute(){
             )
         }
     )
+    var tanto = document.querySelector('input[placeholder="Tanto"]');
+    if(tanto.value !== 'ALL'){
+        var dashbord = document.querySelector('div.DashboardGrid');
+        dashbord.classList.add('tanto');
+    }
 }
 
 function bindPagingEvent(){

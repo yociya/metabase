@@ -174,11 +174,13 @@ function addRowAttribute(){
         }
     )
     var tanto = document.querySelector('input[placeholder="Tanto"]');
-    var dashbord = document.querySelector('div.DashboardGrid');
-    if(tanto.value !== 'ALL'){
-        dashbord.classList.add('tanto');
-    } else {
-        dashbord.classList.remove('tanto');
+    if(tanto){
+        var dashbord = document.querySelector('div.DashboardGrid');
+        if(tanto.value !== 'ALL'){
+            dashbord.classList.add('tanto');
+        } else {
+            dashbord.classList.remove('tanto');
+        }
     }
 }
 

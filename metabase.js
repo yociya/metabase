@@ -3,7 +3,7 @@ pins.setAttribute("type", "text/css");
 document.getElementsByTagName('head').item(0).appendChild(pins);
 var pinss = pins.sheet;
 
-pinss.insertRule('tr:hover { background-color:#3725ff96; opacity:0.8; color:white; }', pinss.cssRules.length);
+pinss.insertRule('tr:hover { background-color:Yellow; opacity:0.8; color:white; }', pinss.cssRules.length);
 
 //status
 pinss.insertRule('tr[row-status="destructed"] { background-color:silver; opacity:0.6; }', pinss.cssRules.length);

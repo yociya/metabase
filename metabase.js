@@ -49,10 +49,13 @@ function findElementForWait(){
     }
     var nowloading = document.querySelector('div.LoadingSpinner');
     if(!nowloading){
-        clearInterval(findElemIntervalId);
-        findElemIntervalId = -1;
-        addRowAttribute();
-        bindPagingEvent();
+        var wait = document.querySelector('.h4.text-bold.mb1');
+        if(!wait || wait.textContent != '待機中'){
+            clearInterval(findElemIntervalId);
+            findElemIntervalId = -1;
+            addRowAttribute();
+            bindPagingEvent();
+        }
     }
     console.log('wait loading...')
 }
@@ -126,7 +129,6 @@ function judgeStatus(text, status){
     }
     if(text === '破棄'
       || text === 'Destructed'){
-        row.setAttribute('row-status','destructed');
         return 'destructed';
     } else if(text === '先送り'
              || text === 'PutOff'){

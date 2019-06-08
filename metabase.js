@@ -47,8 +47,8 @@ function findElementForWait(){
         clearInterval(findElemIntervalId);
         findElemIntervalId = -1;
     }
-    var td = document.querySelector('table.CtorL td');
-    if(td){
+    var nowloading = document.querySelector('div.LoadingSpinner');
+    if(!nowloading){
         clearInterval(findElemIntervalId);
         findElemIntervalId = -1;
         addRowAttribute();

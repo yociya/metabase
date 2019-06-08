@@ -75,41 +75,14 @@ function checkColAttribute(row, today, preRowinfo, headerinfo){
     var cols = row.querySelectorAll('span');
     var rowinfo = {};
     rowinfo['count'] = cols.length;
-
+    
+    var status = '';
     var colIdx = 0;
     cols.forEach(
         function(col){
             var text = col.textContent;
-            if(text === '破棄'
-              || text === 'Destructed'){
-                row.setAttribute('row-status','destructed');
-            } else if(text === '先送り'
-                     || text === 'PutOff'){
-                row.setAttribute('row-status','putoff');
-            } else if(text === '完了'
-                   || text === 'テスト完了'
-                   || text === '評価完了'
-                   || text === '済'
-                   || text === 'Closed'
-                   || text === 'Tested'
-                   || text === 'Evaluated'){
-                row.setAttribute('row-status','complete');
-            } else if(text === '新規'
-                   || text === '着手'
-                   || text === '対応済'
-                   || text === '開発中'
-                   || text === '開発完了'
-                   || text === '開発確認済み'
-                   || text === '評価中'
-                   || text === 'New'
-                   || text === 'In progress'
-                   || text === 'Resolved'
-                   || text === 'Developing'
-                   || text === 'Developed'
-                   || text === 'Develop Confirmed'
-                   || text === 'Evaluating'){
-                row.setAttribute('row-status','open');
-            }
+            status = judgeStatus(text, status);
+            
             var date = text.match(/[0-9]{2,4}[\/][0-9][0-9][\/][0-9][0-9]/);
             if(date){
                 var todaystr = today;
@@ -143,8 +116,46 @@ function checkColAttribute(row, today, preRowinfo, headerinfo){
             colIdx++;
         }
     )
+    row.setAttribute('row-status',status);
 
     return rowinfo;
+}
+function judgeStatus(text, status){
+    if(status != ''){
+        return status;
+    }
+    if(text === '破棄'
+      || text === 'Destructed'){
+        row.setAttribute('row-status','destructed');
+        return 'destructed';
+    } else if(text === '先送り'
+             || text === 'PutOff'){
+        return 'putoff';
+    } else if(text === '完了'
+           || text === 'テスト完了'
+           || text === '評価完了'
+           || text === '済'
+           || text === 'Closed'
+           || text === 'Tested'
+           || text === 'Evaluated'){
+        return 'complete';
+    } else if(text === '新規'
+           || text === '着手'
+           || text === '対応済'
+           || text === '開発中'
+           || text === '開発完了'
+           || text === '開発確認済み'
+           || text === '評価中'
+           || text === 'New'
+           || text === 'In progress'
+           || text === 'Resolved'
+           || text === 'Developing'
+           || text === 'Developed'
+           || text === 'Develop Confirmed'
+           || text === 'Evaluating'){
+        return 'open';
+    }
+    return '';
 }
 
 function addRowAttribute(){

@@ -50,7 +50,7 @@ function findElementForWait(){
     var nowloading = document.querySelector('div.LoadingSpinner');
     if(!nowloading){
         var wait = document.querySelector('.h4.text-bold.mb1');
-        if(!wait || wait.textContent != '待機中'){
+        if(!wait || wait.textContent != '待機中...'){
             clearInterval(findElemIntervalId);
             findElemIntervalId = -1;
             addRowAttribute();

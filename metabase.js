@@ -87,7 +87,7 @@ function checkColAttribute(row, today, preRowinfo, headerinfo){
             status = judgeStatus(text, status);
             
             var date = text.match(/[0-9]{2,4}[\/][0-9][0-9][\/][0-9][0-9]/);
-            if(date){
+            if(date && text.length <= 10){
                 var todaystr = today;
                 if(text.length === 8){
                     todaystr = todaystr.substr(2);
